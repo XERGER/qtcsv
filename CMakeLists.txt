@@ -51,16 +51,33 @@ endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_CORE_TARGET})
 
-install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}Config
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib)
+install(DIRECTORY include
+        DESTINATION include/${PROJECT_NAME}
+)
 
-install(DIRECTORY include DESTINATION .)
+install(
+    TARGETS
+    ${PROJECT_NAME}
+    CONFIGURATIONS
+    Debug
+    DESTINATION
+    bin/Debug
+)
+
+install(
+    TARGETS
+    ${PROJECT_NAME}
+    CONFIGURATIONS
+    Release
+    DESTINATION
+    bin/Release
+)
+
+
 
 # create and install cmake package files
-install(EXPORT ${PROJECT_NAME}Config DESTINATION share/${PROJECT_NAME}/cmake)
-export(TARGETS ${PROJECT_NAME} FILE ${PROJECT_NAME}Config.cmake)
+#install(EXPORT ${PROJECT_NAME}Config DESTINATION share/${PROJECT_NAME}/cmake)
+#export(TARGETS ${PROJECT_NAME} FILE ${PROJECT_NAME}Config.cmake)
 
 if(BUILD_TESTS)
     add_subdirectory(tests)
