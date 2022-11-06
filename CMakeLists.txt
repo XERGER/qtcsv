@@ -51,28 +51,23 @@ endif()
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${QT_CORE_TARGET})
 
-install(DIRECTORY include
+install(DIRECTORY include/qtcsv/.
         DESTINATION include/${PROJECT_NAME}
 )
 
-install(
-    TARGETS
-    ${PROJECT_NAME}
-    CONFIGURATIONS
-    Debug
-    DESTINATION
-    bin/Debug
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION Debug/bin
+    LIBRARY DESTINATION Debug/lib
+    ARCHIVE DESTINATION Debug/lib
+    CONFIGURATIONS Debug
 )
 
-install(
-    TARGETS
-    ${PROJECT_NAME}
-    CONFIGURATIONS
-    Release
-    DESTINATION
-    bin/Release
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION Release/bin
+    LIBRARY DESTINATION Release/lib
+    ARCHIVE DESTINATION Release/lib
+    CONFIGURATIONS Release
 )
-
 
 
 # create and install cmake package files
